@@ -134,6 +134,6 @@ Linux・macOSでは、次のコマンドを使います。
 
 ## 書籍との対応
 
-本書に対応する版は、`book-v1.0.0`タグとして公開する予定です。[対応版のZIP（公開予定）](https://github.com/kmizu/python-language-book-code/archive/refs/tags/book-v1.0.0.zip)は、タグの作成後にダウンロードできます。
+本書に対応する版を`book-v1.0.0`タグで公開しています。[対応版のZIP](https://github.com/kmizu/python-language-book-code/archive/refs/tags/book-v1.0.0.zip)をダウンロードして使えます。
 
 `main`は更新されることがあります。書籍のコードと照合するときは、タグまたはコミットIDで使用する版を固定してください。
