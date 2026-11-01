@@ -77,28 +77,27 @@ python run.py
 
 ## JITを使う
 
-JITには`llvmlite`が必要です。仮想環境を作成してから、依存ライブラリをインストールします。
+JITには、Python 3.10または3.12と`llvmlite`を使います。ここではPython 3.10を指定して仮想環境を作り、その環境のPythonでインストールと実行を行います。すべてリポジトリのルートで実行してください。
 
-```console
-python -m venv .venv
-```
-
-WindowsのPowerShellでは、次のコマンドで仮想環境を有効にします。
+WindowsのPowerShellでは、次のコマンドを使います。
 
 ```powershell
-.venv\Scripts\Activate.ps1
+py -3.10 --version
+py -3.10 -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements-jit.txt
+.\.venv\Scripts\python.exe run.py examples/native.mame --engine adaptive
 ```
 
 Linux・macOSでは、次のコマンドを使います。
 
 ```sh
-source .venv/bin/activate
+python3.10 --version
+python3.10 -m venv .venv
+.venv/bin/python -m pip install -r requirements-jit.txt
+.venv/bin/python run.py examples/native.mame --engine adaptive
 ```
 
-```console
-python -m pip install -r requirements-jit.txt
-python run.py examples/native.mame --engine adaptive
-```
+Python 3.10がない場合は、`py -3.10`を`py -3.12`、`python3.10`を`python3.12`に置き換え、Python 3.12で同じ手順を進めてください。仮想環境を作った後のコマンドは同じです。仮想環境のPythonを直接指定するので、Activateコマンドを実行する必要はありません。
 
 `native.mame`は`1960`を出力します。依存ライブラリは`llvmlite==0.43.0`に固定しています。書籍で測定した環境は、Python 3.10.11、llvmlite 0.43.0、LLVM 14.0.6、Windows x86_64です。
 
@@ -115,15 +114,26 @@ python -m unittest discover -s tests -v
 python benchmark.py --vm-only
 ```
 
-JITを含むテストと測定は、`requirements-jit.txt`をインストールしてから実行します。
+JITを含むテストと測定には、「JITを使う」で準備した仮想環境のPythonを使います。
 
-```console
-python -m unittest discover -s tests -v
-python benchmark.py
+WindowsのPowerShellでは、次のコマンドを実行します。
+
+```powershell
+.\.venv\Scripts\python.exe -m unittest discover -s tests -v
+.\.venv\Scripts\python.exe benchmark.py
+```
+
+Linux・macOSでは、次のコマンドを使います。
+
+```sh
+.venv/bin/python -m unittest discover -s tests -v
+.venv/bin/python benchmark.py
 ```
 
 `llvmlite`がない環境では、JITを必要とするテストはスキップされます。GitHub Actionsでは、Windows・LinuxとPython 3.10・3.12の4通りで、依存ライブラリをインストールしてテストを実行します。
 
 ## 書籍との対応
+
+本書に対応する版は、`book-v1.0.0`タグとして公開する予定です。[対応版のZIP（公開予定）](https://github.com/kmizu/python-language-book-code/archive/refs/tags/book-v1.0.0.zip)は、タグの作成後にダウンロードできます。
 
 `main`は更新されることがあります。書籍のコードと照合するときは、タグまたはコミットIDで使用する版を固定してください。
