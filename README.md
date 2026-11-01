@@ -46,6 +46,35 @@ python run.py examples/sum.mame --engine vm --optimize
 | `examples/` | まめ言語の実行例 |
 | `tests/` | 通常実行、エラー、JIT、CLIなどのテスト |
 
+## 章ごとのコードで進める
+
+第4～7章には、その章までの機能だけを持つコードを`chapters/`に用意しています。各フォルダーは単独で動き、`chapter01.py`・`chapter02.py`・`frontend.py`・`interpreter.py`・`run.py`を収めています。
+
+| フォルダー | この章までに使える機能 |
+| --- | --- |
+| `chapters/04/` | 整数の式、名前、`let`、代入、`;`、`#`コメント、式文 |
+| `chapters/05/` | 第4章の機能に`print`と`if`・`else`を追加。条件は0を偽、非0を真とする |
+| `chapters/06/` | 第5章の機能に比較6種と`while`を追加。比較の連鎖は拒否する |
+| `chapters/07/` | 関数定義・呼出し・`return`・再帰を含む、完成版の構文解析とインタプリタ |
+
+リポジトリのルートから、各章の小さな例を実行できます。出力の1行目は`Result.output`、2行目は`Result.globals`です。
+
+```console
+python chapters/04/run.py
+python chapters/05/run.py
+python chapters/06/run.py
+python chapters/07/run.py
+```
+
+自分で書き足すときは、その章のフォルダーを作業場所にします。たとえば第4章では、次のように実行します。
+
+```console
+cd chapters/04
+python run.py
+```
+
+`frontend.py`の`parse_program`でプログラム全体を読み、`Interpreter(program).run()`で実行します。第4章の`print`や第5章の比較など、まだ導入していない構文は受け付けません。第7章の`frontend.py`と`interpreter.py`は、ルートの完成版と同じ内容です。
+
 ## JITを使う
 
 JITには`llvmlite`が必要です。仮想環境を作成してから、依存ライブラリをインストールします。
