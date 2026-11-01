@@ -1,0 +1,5 @@
+# 値札と個数から合計を計算する。出力は460。
+let price = 120;
+let count = 3;
+let bag = 100;
+print price * count + bag;

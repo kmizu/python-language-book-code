@@ -1,0 +1,8 @@
+# 定義より前の呼出しと再帰。出力は720。
+print factorial(6);
+fn factorial(n) {
+    if n <= 1 {
+        return 1;
+    }
+    return n * factorial(n - 1);
+}

@@ -1,0 +1,11 @@
+# 純粋な関数の呼出しが続くのでJITの対象になる。
+fn square(x) {
+    return x * x;
+}
+let i = 0;
+let total = 0;
+while i < 40 {
+    total = total + square(7);
+    i = i + 1;
+}
+print total;

@@ -1,0 +1,8 @@
+# 繰り返し。出力は45。
+let i = 0;
+let total = 0;
+while i < 10 {
+    total = total + i;
+    i = i + 1;
+}
+print total;
